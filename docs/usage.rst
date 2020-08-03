@@ -2,6 +2,6 @@
 Usage
 ========
 
-To use this template, simply update it::
+To use paranumpy, simply update it::
 
-	import read-the-docs-template
+	import paranumpy 
