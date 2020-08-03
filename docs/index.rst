@@ -9,8 +9,8 @@ Contents:
    :maxdepth: 2
 
    usage
-   authors
    installation 
+   authors
 
 
 Indices and tables
