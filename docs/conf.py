@@ -20,6 +20,8 @@
 project = 'paranumpy'
 copyright = '2020, Fabio Caruso'
 author = 'Fabio Caruso'
+master_doc = 'index'
+
 
 
 # -- General configuration ---------------------------------------------------
