@@ -11,11 +11,10 @@ Contents:
 .. toctree::
    :caption: paranumpy documentation
    :maxdepth: 2
-   :glob:
 
-   authors 
-   usage 
-   installation 
+   usage.rst
+   authors.rst
+   installation.rst 
 
 
 Indices and tables
