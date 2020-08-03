@@ -1,4 +1,4 @@
-.. Read the Docs Template documentation master file, created by
+.. paranumpy documentation master file, created by
    sphinx-quickstart on Tue Aug 26 14:19:49 2014.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -9,11 +9,13 @@ Welcome to paranumpy's documentation!
 Contents:
 
 .. toctree::
+   :caption: paranumpy documentation
    :maxdepth: 2
    :glob:
 
-   *
-
+   authors 
+   usage 
+   installation 
 
 
 Indices and tables
