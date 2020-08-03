@@ -11,7 +11,6 @@ Contents:
 .. toctree::
    :caption: paranumpy documentation
    :maxdepth: 2
-   :glob:
 
    authors 
    usage 
