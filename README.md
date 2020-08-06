@@ -137,6 +137,8 @@ On rank  1  a_loc =  [4 5 6]
 
 ### Example 3
 
+This examples illustrates how to perform simple parallel operations on a distributed 1D numpy array by using the functions `scatter_1D_array` and `gather_1D_array` or `allgather_1D_array`. 
+
 ```python
 import numpy as np
 import paranumpy.paranumpy as pnp
@@ -146,24 +148,36 @@ comm = MPI.COMM_WORLD
 size = comm.Get_size()
 rank = comm.Get_rank()
 
-##############
-# INTEGERS
-#
-# generate an array of integers
-a     = np.asarray ( range (7) ).astype(np.int16)
+a     = np.asarray ( range (7) ).astype(np.int16)  # generate an array of integers
 if rank == 0 :
     print (  '\n',"Original array: \n", a , ' \n' )
-# distribute the array over all ranks via paranumpy
-a_loc = pnp.scatter_1D_array ( a )
+
+a_loc = pnp.scatter_1D_array ( a )  # distribute the array across all ranks
 print ( 'Scattered array on rank ', rank, ':', a_loc, flush = True)
 for i in range ( a_loc.shape[0] ):
-    a_loc[ i ] =   a_loc[ i ] ** 2
+    a_loc[ i ] =   a_loc[ i ] ** 2  # do something in parallel
 print ( 'Modified array on rank ', rank, ':', a_loc, flush = True)
-a2_gathered = pnp.gather_1D_array (a_loc)
+a2_gathered = pnp.gather_1D_array (a_loc) # collect the array on rank = 0 
 print ( 'Modified (gathered) array on rank ', rank, ':', a2_gathered, flush = True)
-a2_allgathered = pnp.allgather_1D_array (a_loc)
+a2_allgathered = pnp.allgather_1D_array (a_loc) # collect the array on all ranks
 print ( 'Modified (allgathered) array on rank ', rank, ':', a2_allgathered)
 ```
+Parallel execution of this script on 2 MPI processes should yield:
+
+```
+ Original array:
+ [0 1 2 3 4 5 6]
+
+Scattered array on rank  0 : [0 1 2 3]
+Modified array on rank  0 : [0 1 4 9]
+Scattered array on rank  1 : [4 5 6]
+Modified array on rank  1 : [16 25 36]
+Modified (gathered) array on rank  1 : None
+Modified (gathered) array on rank  0 : [ 0  1  4  9 16 25 36]
+Modified (allgathered) array on rank  0 : [ 0  1  4  9 16 25 36]
+Modified (allgathered) array on rank  1 : [ 0  1  4  9 16 25 36]
+```
+
 
 ### Example 4
 
