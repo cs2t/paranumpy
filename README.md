@@ -38,11 +38,11 @@ A detailed overview of `mpi4py` is available on [the project page](https://mpi4p
 The following examples illustrate some of the basic operations that can be perfomed with  `paranumpy`. 
 
 `paranumpy` implements the following functions: 
-- `pnp.scatter_int ( N )`: It distributes an integer across all ranks. Input: N (an integer). Output: N_loc (an integer), the value of the distributed integer on each rank. The sum of N_loc on all ranks yields N. 
-- `pnp.scatter_1D_array   ( a )`: It distributes the entries of a 1D numpy array across all ranks. The array `a` should be defined on rank 0, whereas it can be set to `None` on all other ranks. Input: a (a 1D numpy array). Output: `a_loc` (a 1D numpy array), the distributed array. 
-- `pnp.gather_1D_array    ( a_loc )`: It gathers the distributed arrays `a_loc` from different ranks, and it returns on rank 0 the global array. Input: `a_loc` (a 1D numpy array). Ouput: a 1D numpy array on rank 0, `None` on other ranks. 
-- `pnp.allgather_1D_array ( a_loc )`: It gathers the distributed arrays `a_loc` from different ranks, and it returns all ranks the global array. Input: `a_loc` (a 1D numpy array). Ouput: a 1D numpy array. 
--  `pnp.scatter_2D_array`,  `pnp.scatter_3D_array ,  `pnp.scatter_3D_array`:  
+- `scatter_int ( N )`: It distributes an integer across all ranks. Input: N (an integer). Output: N_loc (an integer), the value of the distributed integer on each rank. The sum of N_loc on all ranks yields N. 
+- `scatter_1D_array   ( a )`: It distributes the entries of a 1D numpy array across all ranks. The array `a` should be defined on rank 0, whereas it can be set to `None` on all other ranks. Input: a (a 1D numpy array). Output: `a_loc` (a 1D numpy array), the distributed array. 
+- `gather_1D_array    ( a_loc )`: It gathers the distributed arrays `a_loc` from different ranks, and it returns on rank 0 the global array. Input: `a_loc` (a 1D numpy array). Ouput: a 1D numpy array on rank 0, `None` on other ranks. 
+- `allgather_1D_array ( a_loc )`: It gathers the distributed arrays `a_loc` from different ranks, and it returns all ranks the global array. Input: `a_loc` (a 1D numpy array). Ouput: a 1D numpy array. 
+-  `scatter_<X>D_array`, `gather_<X>D_array`, `allgather_<X>D_array`: Do the same `scatter_1D_array` etc., for X= 2,3, and 4 2D, 3D, and 4D arrays. The array distribution is done on the first axis of the array. 
 
 The following types for numpy arrays are sypported: 
 
@@ -61,6 +61,16 @@ The following types for numpy arrays are sypported:
                np.complex64  
                np.complex128 
                np.complex_   
+
+## Examples  
+
+These examples are included in the folder examples. 
+The parallel execution of the examples can be conducted for instance via: 
+
+```bash
+mpirun -np 2 python example01.py 
+```
+
 
 
 ### Example 1 
@@ -82,16 +92,12 @@ N_loc = pnp.scatter_int ( N )
 print ( "On rank ", rank, ' N_loc = ', N_loc )
 ```
 
-The parallel execution of this script can be conducted for instance via: 
-
-```bash
-mpirun -np 2 python example01.py 
-```
-
 and it should yield the following output:
 
-> On rank  0  N_loc =  3
-> On rank  1  N_loc =  2
+```
+ On rank  0  N_loc =  3
+ On rank  1  N_loc =  2
+```
 
 ### Example 2 
 
