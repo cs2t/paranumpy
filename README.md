@@ -101,6 +101,9 @@ and it should yield the following output:
 
 ### Example 2 
 
+This examples illustrates the distribution of a 1D numpy array using the 
+`scatter_1D_array` function. 
+
 ```python
 import numpy as np
 import paranumpy.paranumpy as pnp
@@ -120,6 +123,16 @@ comm.Barrier()
 a_loc = pnp.scatter_1D_array ( a )
 print ( "On rank ", rank, ' a_loc = ', a_loc )
 comm.Barrier()
+```
+
+Parallel execution of this script on 2 MPI processes should yield:
+
+```
+ I distribute the following INTEGER array:
+ [0 1 2 3 4 5 6]
+
+On rank  0  a_loc =  [0 1 2 3]
+On rank  1  a_loc =  [4 5 6]
 ```
 
 ### Example 3
