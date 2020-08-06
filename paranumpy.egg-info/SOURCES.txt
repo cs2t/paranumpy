@@ -1,0 +1,8 @@
+README.md
+setup.py
+paranumpy/__init__.py
+paranumpy/paranumpy.py
+paranumpy.egg-info/PKG-INFO
+paranumpy.egg-info/SOURCES.txt
+paranumpy.egg-info/dependency_links.txt
+paranumpy.egg-info/top_level.txt
