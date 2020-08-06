@@ -1,7 +1,7 @@
 # Paranumpy  
 
-`paranumpy` provides a set of functions 
-to handle numpy arrays in a MPI (mpi4py) parallel environment.
+`paranumpy` is conceived as a tool to facilitate the parallelization of a python code. 
+In practice,  `paranumpy` provides a set of functions to handle numpy arrays in a MPI (mpi4py) parallel environment.
 
 ## Installation 
 
@@ -153,12 +153,15 @@ if rank == 0 :
     print (  '\n',"Original array: \n", a , ' \n' )
 
 a_loc = pnp.scatter_1D_array ( a )  # distribute the array across all ranks
-print ( 'Scattered array on rank ', rank, ':', a_loc, flush = True)
+print ( 'Scattered array on rank ', rank, ':', a_loc)
+
 for i in range ( a_loc.shape[0] ):
     a_loc[ i ] =   a_loc[ i ] ** 2  # do something in parallel
-print ( 'Modified array on rank ', rank, ':', a_loc, flush = True)
+print ( 'Modified array on rank ', rank, ':', a_loc)
+
 a2_gathered = pnp.gather_1D_array (a_loc) # collect the array on rank = 0 
-print ( 'Modified (gathered) array on rank ', rank, ':', a2_gathered, flush = True)
+print ( 'Modified (gathered) array on rank ', rank, ':', a2_gathered)
+
 a2_allgathered = pnp.allgather_1D_array (a_loc) # collect the array on all ranks
 print ( 'Modified (allgathered) array on rank ', rank, ':', a2_allgathered)
 ```
@@ -169,17 +172,19 @@ Parallel execution of this script on 2 MPI processes should yield:
  [0 1 2 3 4 5 6]
 
 Scattered array on rank  0 : [0 1 2 3]
-Modified array on rank  0 : [0 1 4 9]
 Scattered array on rank  1 : [4 5 6]
+Modified array on rank  0 : [0 1 4 9]
 Modified array on rank  1 : [16 25 36]
-Modified (gathered) array on rank  1 : None
 Modified (gathered) array on rank  0 : [ 0  1  4  9 16 25 36]
+Modified (gathered) array on rank  1 : None
 Modified (allgathered) array on rank  0 : [ 0  1  4  9 16 25 36]
 Modified (allgathered) array on rank  1 : [ 0  1  4  9 16 25 36]
 ```
 
 
 ### Example 4
+
+This examples essentially repeat the same steps of example 3, for a 2D array. 
 
 ```python
 import numpy as np
@@ -190,13 +195,10 @@ comm = MPI.COMM_WORLD
 size = comm.Get_size()
 rank = comm.Get_rank()
 
-##############
-# INTEGERS
-#
-# generate an array of integers
+# generate a 2D array of integers on rank 0 
 a = None
-Nx = 7
-Ny = 7
+Nx = 3
+Ny = 4
 if (rank == 0):
     a = np.zeros((Nx, Ny),dtype = np.int16)
     for ix in range(Nx):
@@ -208,18 +210,50 @@ if rank == 0 :
 
 # distribute the array over all ranks via paranumpy
 a_loc = pnp.scatter_2D_array ( a )
-print ( 'Scattered array on rank ', rank, ':', a_loc, flush = True)
+print ( 'Scattered array on rank ', rank, ':\n', a_loc)
 for i in range ( a_loc.shape[0] ):
     a_loc[ i ] =   a_loc[ i ] **2
 
-print ( 'Modified array on rank ', rank, ':', a_loc, flush = True)
+print ( 'Modified array on rank ', rank, ':\n', a_loc)
 a2_gathered = pnp.gather_2D_array (a_loc)
-print ( 'Modified (gathered) array on rank ', rank, ':', a2_gathered, flush = True)
+
+print ( 'Modified (gathered) array on rank ', rank, ':\n', a2_gathered)
 a2_allgathered = pnp.allgather_2D_array (a_loc)
-print ( 'Modified (allgathered) array on rank ', rank, ':', a2_allgathered)
+print ( 'Modified (allgathered) array on rank ', rank, ':\n', a2_allgathered)
 ```
 
-A set of examples which illustrates the usage of paranumpy is given in the folder `./test` 
+Parallel execution of this script on 2 MPI processes should yield:
+```
+ Original array:
+ [[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+
+Scattered array on rank  0 :
+ [[0 1 2 3]
+ [4 5 6 7]]
+Scattered array on rank  1 :
+ [[ 8  9 10 11]]
+Modified array on rank  0 :
+ [[ 0  1  4  9]
+ [16 25 36 49]]
+Modified array on rank  1 :
+ [[ 64  81 100 121]]
+Modified (gathered) array on rank  0 :
+ [[  0   1   4   9]
+ [ 16  25  36  49]
+ [ 64  81 100 121]]
+Modified (gathered) array on rank  1 :
+ None
+Modified (allgathered) array on rank  1 :
+ [  0   1   4   9]
+ [ 16  25  36  49]
+ [ 64  81 100 121]]
+Modified (allgathered) array on rank  0 :
+ [[  0   1   4   9]
+ [ 16  25  36  49]
+ [ 64  81 100 121]]
+```
 
 ## Authors
 

@@ -17,8 +17,8 @@ rank = comm.Get_rank()
 #
 # generate an array of integers 
 a = None
-Nx = 7
-Ny = 7
+Nx = 3
+Ny = 4
 if (rank == 0):
     a = np.zeros((Nx, Ny),dtype = np.int16)
     for ix in range(Nx):
@@ -30,13 +30,13 @@ if rank == 0 :
 
 # distribute the array over all ranks via paranumpy 
 a_loc = pnp.scatter_2D_array ( a )
-print ( 'Scattered array on rank ', rank, ':', a_loc, flush = True)
+print ( 'Scattered array on rank ', rank, ':\n', a_loc)
 for i in range ( a_loc.shape[0] ):
     a_loc[ i ] =   a_loc[ i ] **2  
 
-print ( 'Modified array on rank ', rank, ':', a_loc, flush = True)
+print ( 'Modified array on rank ', rank, ':\n', a_loc)
 a2_gathered = pnp.gather_2D_array (a_loc)
-print ( 'Modified (gathered) array on rank ', rank, ':', a2_gathered, flush = True)
+print ( 'Modified (gathered) array on rank ', rank, ':\n', a2_gathered)
 a2_allgathered = pnp.allgather_2D_array (a_loc)
-print ( 'Modified (allgathered) array on rank ', rank, ':', a2_allgathered)
+print ( 'Modified (allgathered) array on rank ', rank, ':\n', a2_allgathered)
 
