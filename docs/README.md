@@ -3,7 +3,7 @@
 `paranumpy` is conceived as a tool to facilitate the parallelization of numpy arrays in python. 
 and it consists of a set of functions to handle numpy arrays in a MPI (mpi4py) parallel environment.
 
-## Installation 
+# Installation 
 
 `paranumpy` is still under testing, and it is hosted on the testing platform of the python package index ([PyPI](https://pypi.org)). 
 It can be installed with `pip`:
@@ -14,7 +14,7 @@ $ pip install -i https://test.pypi.org/simple/  paranumpy
 
 Dependencies: `numpy`, `mpi4py`
 
-## Usage 
+# Usage 
 
 After successful installation `paranumpy` can be imported as an ordinary module:  
  
@@ -60,7 +60,7 @@ The following types for numpy arrays are supported:
                np.complex128 
                np.complex_   
 
-## Examples  
+# Examples  
 
 The following examples illustrate some of the basic operations that can be performed with  `paranumpy`. 
 These examples are included in the folder examples. 
@@ -71,7 +71,7 @@ mpirun -np 2 python example01.py
 ```
 
 
-### Example 1 
+## Example 1 
 
 This first example illustrates how to split the value of an 
 integer across the different ranks of a parallel instance. 
@@ -97,7 +97,7 @@ and it should yield the following output:
  On rank  1  N_loc =  2
 ```
 
-### Example 2 
+## Example 2 
 
 This examples illustrates the distribution of a 1D numpy array using the 
 `scatter_1D_array` function. 
@@ -133,7 +133,7 @@ On rank  0  a_loc =  [0 1 2 3]
 On rank  1  a_loc =  [4 5 6]
 ```
 
-### Example 3
+## Example 3
 
 This examples illustrates how to perform simple parallel operations on a distributed 1D numpy array by using the functions `scatter_1D_array` and `gather_1D_array` or `allgather_1D_array`. 
 
@@ -180,7 +180,7 @@ Modified (allgathered) array on rank  1 : [ 0  1  4  9 16 25 36]
 ```
 
 
-### Example 4
+## Example 4
 
 This examples essentially repeat the same steps of example 3, for a 2D array. 
 
@@ -253,6 +253,6 @@ Modified (allgathered) array on rank  0 :
  [ 64  81 100 121]]
 ```
 
-## Authors
+# Authors
 
 Paranumpy is developed by Fabio Caruso and the Computational Solid-State Theory Laboratory (https://cs2t.de).

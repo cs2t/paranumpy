@@ -8,18 +8,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   usage
-   installation 
-   authors
    README
 
-:doc:`TEST DIR </README>`
+:doc:`docs </README>`
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
