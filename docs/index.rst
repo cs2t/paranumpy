@@ -13,6 +13,8 @@ Contents:
    authors
    README
 
+:doc:`TEST DIR </README>`
+
 
 Indices and tables
 ==================
