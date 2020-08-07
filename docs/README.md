@@ -255,4 +255,4 @@ Modified (allgathered) array on rank  0 :
 
 # Authors
 
-Paranumpy is developed by Fabio Caruso and the Computational Solid-State Theory Laboratory (https://cs2t.de).
+Paranumpy is developed by Fabio Caruso and the Computational Solid-State Theory Laboratory ([https://cs2t.de](https://cs2t.de)).

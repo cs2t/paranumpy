@@ -10,6 +10,3 @@ Contents:
 
    README
 
-:doc:`docs </README>`
-
-
