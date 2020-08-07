@@ -1,12 +1,12 @@
 # Paranumpy  
 
-`paranumpy` is conceived as a tool to facilitate the parallelization of a python code. 
-In practice,  `paranumpy` provides a set of functions to handle numpy arrays in a MPI (mpi4py) parallel environment.
+`paranumpy` is conceived as a tool to facilitate the parallelization of numpy arrays in python. 
+and it consists of a set of functions to handle numpy arrays in a MPI (mpi4py) parallel environment.
 
 ## Installation 
 
-`paranumpy` is still under testing, and it is therefore hosted on the testing platform of the python package index ([PyPI](https://pypi.org)). 
-It can be installed with `pip` through the following command:
+`paranumpy` is still under testing, and it is hosted on the testing platform of the python package index ([PyPI](https://pypi.org)). 
+It can be installed with `pip`:
 
 ```bash 
 $ pip install -i https://test.pypi.org/simple/  paranumpy
@@ -16,15 +16,14 @@ Dependencies: `numpy`, `mpi4py`
 
 ## Usage 
 
-After successfull installation of the package, 
-`paranumpy` can be imported as:  
+After successful installation `paranumpy` can be imported as an ordinary module:  
  
 ```python
 import numpy as np
 import paranumpy.paranumpy as pnp
 ```
 
-Additionally, an MPI instance mush be initialized: 
+An MPI instance must be initialized: 
 
 ```python
 from mpi4py import MPI
@@ -35,16 +34,15 @@ rank = comm.Get_rank()
 ```
 
 A detailed overview of `mpi4py` is available on [the project page](https://mpi4py.readthedocs.io/en/stable/). 
-The following examples illustrate some of the basic operations that can be perfomed with  `paranumpy`. 
 
 `paranumpy` implements the following functions: 
-- `scatter_int ( N )`: It distributes an integer across all ranks. Input: N (an integer). Output: N_loc (an integer), the value of the distributed integer on each rank. The sum of N_loc on all ranks yields N. 
-- `scatter_1D_array   ( a )`: It distributes the entries of a 1D numpy array across all ranks. The array `a` should be defined on rank 0, whereas it can be set to `None` on all other ranks. Input: a (a 1D numpy array). Output: `a_loc` (a 1D numpy array), the distributed array. 
-- `gather_1D_array    ( a_loc )`: It gathers the distributed arrays `a_loc` from different ranks, and it returns on rank 0 the global array. Input: `a_loc` (a 1D numpy array). Ouput: a 1D numpy array on rank 0, `None` on other ranks. 
-- `allgather_1D_array ( a_loc )`: It gathers the distributed arrays `a_loc` from different ranks, and it returns all ranks the global array. Input: `a_loc` (a 1D numpy array). Ouput: a 1D numpy array. 
+- `scatter_int ( N )`: It distributes an integer across all ranks. *Arguments*: N (an integer). It returns an integer N_loc, which is the value of the distributed integer on each rank. The sum of N_loc on all ranks yields N. 
+- `scatter_1D_array   ( a )`: It distributes the entries of a 1D numpy array across all ranks. The array `a` should be defined on rank 0, whereas it can be set to `None` on all other ranks. *Arguments*: a (a 1D numpy array). The function returns a 1D numpy array `a_loc`, which is the distributed 1D array. 
+- `gather_1D_array    ( a_loc )`: It gathers the distributed array `a_loc` from different ranks, and it returns on rank 0 the global array. *Arguments*: `a_loc` (a 1D numpy array). Output: a 1D numpy array on rank 0, `None` on other ranks. 
+- `allgather_1D_array ( a_loc )`: It gathers the distributed array `a_loc` from different ranks, and it returns all ranks the global array. *Arguments*: `a_loc` (a 1D numpy array). Output: a 1D numpy array. 
 -  `scatter_<X>D_array`, `gather_<X>D_array`, `allgather_<X>D_array`: Do the same `scatter_1D_array` etc., for X= 2,3, and 4 2D, 3D, and 4D arrays. The array distribution is done on the first axis of the array. 
 
-The following types for numpy arrays are sypported: 
+The following types for numpy arrays are supported: 
 
                np.int8  
                np.int16      
@@ -64,13 +62,13 @@ The following types for numpy arrays are sypported:
 
 ## Examples  
 
+The following examples illustrate some of the basic operations that can be performed with  `paranumpy`. 
 These examples are included in the folder examples. 
 The parallel execution of the examples can be conducted for instance via: 
 
 ```bash
 mpirun -np 2 python example01.py 
 ```
-
 
 
 ### Example 1 
@@ -257,4 +255,4 @@ Modified (allgathered) array on rank  0 :
 
 ## Authors
 
-Paranumpy is developed by Fabio Caruso and the Computational Solid-State Theory Laboratory ( https://cs2t.de ).
+Paranumpy is developed by Fabio Caruso and the Computational Solid-State Theory Laboratory (https://cs2t.de).

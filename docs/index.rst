@@ -11,6 +11,7 @@ Contents:
    usage
    installation 
    authors
+   README
 
 
 Indices and tables
