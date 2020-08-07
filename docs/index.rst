@@ -6,10 +6,10 @@ Welcome to paranumpy's documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    README
 
-:doc:`docs </README>`
+.. :doc:`docs </README>`
 
 
