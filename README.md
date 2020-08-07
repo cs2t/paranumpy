@@ -5,11 +5,11 @@ and it consists of a set of functions to handle numpy arrays in a MPI (mpi4py) p
 
 ## Installation 
 
-`paranumpy` is still under testing, and it is hosted on the testing platform of the python package index ([PyPI](https://pypi.org)). 
-It can be installed with `pip`:
+`paranumpy` is still under testing. It is hosted on the python package index ([PyPI](https://pypi.org)) and
+it can be installed with `pip`:
 
-```bash 
-$ pip install -i https://test.pypi.org/simple/  paranumpy
+```bash
+$ pip install paranumpy
 ```
 
 Dependencies: `numpy`, `mpi4py`
