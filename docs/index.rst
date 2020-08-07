@@ -10,6 +10,6 @@ Contents:
 
    README
 
-.. :doc:`docs </README>`
+:doc:`docs </README>`
 
 
