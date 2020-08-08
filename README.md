@@ -1,7 +1,7 @@
 # Paranumpy  
 
 `paranumpy` is conceived as a tool to facilitate the parallelization of numpy arrays in python. 
-and it consists of a set of functions to handle numpy arrays in a MPI (mpi4py) parallel environment.
+It consists of a set of functions to handle numpy arrays in a MPI (mpi4py) parallel environment.
 
 # Installation 
 
